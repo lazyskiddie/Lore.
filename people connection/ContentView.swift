@@ -105,6 +105,42 @@ struct NameInputView: View {
     }
 }
 
+// MARK: Age Input
+struct AgeInputView: View {
+    @State private var age: String = ""
+    var nextAction: () -> Void
+    
+    var body: some View {
+        ZStack {
+            Color.purple.ignoresSafeArea()
+            
+            VStack(spacing: 30) {
+                Spacer()
+                
+                Text("What is Your Age?")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                
+                TextField("Enter your age..", text: $age)
+                    .keyboardType(.numberPad) // Only allow numbers
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal, 40)
+                    .foregroundColor(.black)
+                
+                Spacer()
+                
+                PrimaryButton(title: "Next", action: nextAction)
+                    .disabled(age.isEmpty)
+                    .opacity(age.isEmpty ? 0.6 : 1.0)
+            }
+            .padding()
+        }
+    }
+}
+
 // MARK: Button Struct
 
 struct PrimaryButton: View {
