@@ -33,6 +33,42 @@ struct ContentView: View {
     }
 }
 
+// MARK: Welcome
+struct WelcomeView: View {
+    var nextAction: () -> Void
+    
+    var body: some View {
+        ZStack {
+            Color.purple
+            
+            VStack {
+                Text("Welcome !!")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .overlay(
+                        Capsule(style: .continuous)
+                            .frame(height: 5)
+                            .offset(y: 5)
+                            .foregroundColor(.white)
+                        , alignment: .bottom
+                    )
+                
+                Image(systemName: "heart.text.square.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200)
+                    .foregroundColor(.black)
+                    .padding()
+                
+                Spacer()
+                
+                PrimaryButton(title: "Let's Start", action: nextAction)
+            }
+            .padding()
+            .foregroundColor(.white)
+        }
+    }
+}
 
 // MARK: Button Struct
 
