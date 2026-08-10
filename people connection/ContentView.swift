@@ -70,6 +70,41 @@ struct WelcomeView: View {
     }
 }
 
+// MARK: Name Input
+struct NameInputView: View {
+    @State private var name: String = ""
+    var nextAction: () -> Void
+    
+    var body: some View {
+        ZStack {
+            Color.purple.ignoresSafeArea()
+            
+            VStack(spacing: 30) {
+                Spacer()
+                
+                Text("What is Your Name?")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                
+                TextField("Enter your name here..", text: $name)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal, 40)
+                    .foregroundColor(.black)
+                
+                Spacer()
+                
+                PrimaryButton(title: "Next", action: nextAction)
+                    .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .opacity(name.isEmpty ? 0.6 : 1.0)
+            }
+            .padding()
+        }
+    }
+}
+
 // MARK: Button Struct
 
 struct PrimaryButton: View {
