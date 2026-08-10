@@ -141,6 +141,49 @@ struct AgeInputView: View {
     }
 }
 
+// MARK: Gender Selection
+struct GenderInputView: View {
+    @State private var gender: String = ""
+    var nextAction: () -> Void
+    
+    var body: some View {
+        ZStack {
+            Color.purple.ignoresSafeArea()
+            
+            VStack(spacing: 30) {
+                Spacer()
+                
+                Text("What's your gender?")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                
+                Picker("Select Gender", selection: $gender) {
+                    Text("Select Gender").tag("")
+                    Text("Male").tag("Male")
+                    Text("Female").tag("Female")
+                    Text("Non-Binary").tag("Non-Binary")
+                }
+                .pickerStyle(.menu)
+                .tint(.purple)
+                .font(.headline)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(10)
+                .padding(.horizontal, 40)
+                
+                Spacer()
+                
+                PrimaryButton(title: "Next", action: nextAction)
+                    .disabled(gender.isEmpty)
+                    .opacity(gender.isEmpty ? 0.6 : 1.0)
+            }
+            .padding()
+        }
+    }
+}
+
 // MARK: Button Struct
 
 struct PrimaryButton: View {
