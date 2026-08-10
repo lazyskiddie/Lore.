@@ -184,6 +184,61 @@ struct GenderInputView: View {
     }
 }
 
+// MARK: Match Ready
+struct MatchReadyView: View {
+    var nextAction: () -> Void
+    
+    var body: some View {
+        ZStack {
+            Color.purple
+                .ignoresSafeArea(.all)
+            
+            VStack {
+                HStack {
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .foregroundColor(.black)
+                        .padding(.top, 15)
+                    
+                    Image(systemName: "heart.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 200)
+                        .foregroundColor(.black)
+                        .padding(.bottom, 50)
+                
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .foregroundColor(.black)
+                        .padding(.top, 15)
+                    
+                }
+                
+                Text("Find your match")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .overlay(
+                        Capsule(style: .continuous)
+                            .frame(height: 5)
+                            .offset(y: 5)
+                            .foregroundColor(.white)
+                        , alignment: .bottom
+                    )
+                
+                Spacer()
+                
+                PrimaryButton(title: "Sign In", action: nextAction)
+            }
+            .foregroundColor(.white)
+            .padding()
+        }
+    }
+}
+
 // MARK: Button Struct
 
 struct PrimaryButton: View {
