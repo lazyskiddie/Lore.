@@ -33,6 +33,28 @@ struct ContentView: View {
     }
 }
 
+
+// MARK: Button Struct
+
+struct PrimaryButton: View {
+    let title: String
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(.purple)
+                .frame(maxWidth: .infinity)
+                .frame(height: 60)
+                .background(Color.white)
+                .cornerRadius(20)
+        }
+        .padding(.horizontal)
+        .padding(.bottom, 20)
+    }
+}
+
 #Preview {
     ContentView()
 }
