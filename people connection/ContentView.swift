@@ -33,13 +33,13 @@ struct ContentView: View {
     }
 }
 
-// MARK: Welcome
 struct WelcomeView: View {
     var nextAction: () -> Void
     
     var body: some View {
         ZStack {
             Color.purple
+                .ignoresSafeArea()
             
             VStack {
                 Text("Welcome !!")
@@ -62,10 +62,40 @@ struct WelcomeView: View {
                 
                 Spacer()
                 
+                TypewriterText()
+                
+                Spacer()
+                
                 PrimaryButton(title: "Let's Start", action: nextAction)
             }
             .padding()
             .foregroundColor(.white)
+        }
+    }
+}
+
+// MARK: - Typewriter Text Component
+struct TypewriterText: View {
+    let fullText = "Where chemistry finds you after the swipe.."
+    @State private var displayedText: String = ""
+    
+    var body: some View {
+        Text(displayedText)
+            .font(.title)
+            .bold()
+            .multilineTextAlignment(.center)
+            .padding(.bottom, 10)
+            .task {
+                await typeOutText()
+            }
+    }
+    
+    func typeOutText() async {
+        displayedText = ""
+        for character in fullText {
+            displayedText.append(character)
+            // 50_000_000 nanoseconds = 0.05 seconds delay per letter
+            try? await Task.sleep(nanoseconds: 50_000_000)
         }
     }
 }
