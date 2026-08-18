@@ -146,6 +146,33 @@ struct ProfileView: View {
     }
 }
 
+// MARK: - Helper Views & Extensions
+
+// Reusable Action Button Component
+struct ActionButton: View {
+    let icon: String
+    let color: Color
+    var small: Bool = false
+    let themeColor = Color.purple
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: icon)
+                .font(.system(size: small ? 24 : 30, weight: .bold))
+                .foregroundColor(color)
+                .frame(width: small ? 60 : 75, height: small ? 60 : 75)
+                .background(Color(UIColor.secondarySystemGroupedBackground))
+                .clipShape(Circle())
+//                .overlay(
+//                    Circle()
+//                        .stroke(themeColor.opacity(0.4), lineWidth: 1.5)
+//                )
+                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 0)
+        }
+    }
+}
+
 
 #Preview {
     ProfileView()
