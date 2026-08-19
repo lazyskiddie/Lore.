@@ -194,6 +194,87 @@ struct RoundedCorner: Shape {
     }
 }
 
+struct FlowLayout<T: Hashable, V: View>: View {
+    let mode: LayoutMode
+    let items: [T]
+    let viewMapping: (T) -> V
+
+    @State private var totalHeight: CGFloat = 0
+
+    enum LayoutMode {
+        var scrollable: Bool {
+            switch self {
+            case .scroll: return true
+            case .wrap: return false
+            }
+        }
+        case scroll
+        case wrap
+    }
+
+    var body: some View {
+        Group {
+            if mode.scrollable {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(items, id: \.self) { item in
+                            viewMapping(item)
+                        }
+                    }
+                }
+            } else {
+                GeometryReader { geometry in
+                    self.content(in: geometry)
+                }
+                .frame(height: totalHeight)
+            }
+        }
+    }
+
+    private func content(in g: GeometryProxy) -> some View {
+        var width = CGFloat.zero
+        var height = CGFloat.zero
+
+        return ZStack(alignment: .topLeading) {
+            ForEach(self.items, id: \.self) { item in
+                self.viewMapping(item)
+                    .padding([.horizontal, .vertical], 4)
+                    .alignmentGuide(.leading, computeValue: { d in
+                        if (abs(width - d.width) > g.size.width) {
+                            width = 0
+                            height -= d.height
+                        }
+                        let result = width
+                        if item == self.items.last! {
+                            width = 0 //last item
+                        } else {
+                            width -= d.width
+                        }
+                        return result
+                    })
+                    .alignmentGuide(.top, computeValue: { d in
+                        let result = height
+                        if item == self.items.last! {
+                            height = 0
+                        }
+                        return result
+                    })
+            }
+        }
+        .background(viewHeightReader($totalHeight))
+    }
+
+    private func viewHeightReader(_ binding: Binding<CGFloat>) -> some View {
+        return GeometryReader { geometry -> Color in
+            let rect = geometry.frame(in: .local)
+            DispatchQueue.main.async {
+                binding.wrappedValue = rect.size.height
+            }
+            return .clear
+        }
+    }
+}
+
 
 #Preview {
     ProfileView()
