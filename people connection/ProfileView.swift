@@ -31,41 +31,46 @@ struct ProfileView: View {
                             endPoint: .bottom
                         )
                         .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
-                        
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            HStack(alignment: .firstTextBaseline) {
-                                Text("\(username)")
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundColor(.white)
-                                    .bold()
-                                
-                                Image(systemName: "checkmark.seal.fill")
-                                    .foregroundColor(.blue)
-                                    .font(.title2)
-                            }
-                            Text("\(age)")
-                                .font(.system(.body, design: .monospaced))
-                                .foregroundColor(.white)
-                                .bold()
-                            
-                            HStack {
-                                Image(systemName: "location.fill")
-                                Text(location)
-                            }
-                            .font(.subheadline)
-                            .foregroundColor(.white.opacity(0.9))
-                        }
-                        .padding(.horizontal, 20)
-                        .frame(width: 200, height: 100)
-                        .background(.black)
-//                        .padding(.leading)
-                        .cornerRadius(25)
-//                        .padding(.bottom, 25)
                     }
                     
                     VStack(spacing: 16) {
+                        VStack(alignment: .leading, spacing: 4) {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    HStack(alignment: .firstTextBaseline) {
+//                                        Image(systemName: "person.crop.circle.badge.checkmark.fill")
+                                        Image(systemName: "person.crop.circle.fill")
+                                            .foregroundColor(themeColor)
+                                        Text("\(username)")
+                                            .font(.system(size: 16, weight: .bold))
+                                            .foregroundColor(.black)
+                                            .bold()
+                                        
+                                        Image(systemName: "checkmark.seal.fill")
+                                            .foregroundColor(.blue)
+                                            .font(.headline)
+                                    }
+                                    Text("\(age)")
+                                        .font(.system(.body, design: .monospaced))
+                                        .foregroundColor(.black)
+                                        .bold()
+                                    
+                                    HStack {
+                                        Image(systemName: "location.fill")
+                                        Text(location)
+                                    }
+                                    .font(.subheadline)
+                                    .foregroundColor(.black.opacity(0.9))
+                                }
+                        }
+                        .padding()
+                        .frame(width: 300, height: 100)
+                        .background(Color(UIColor.secondarySystemGroupedBackground))
+                        .cornerRadius(15)
+                        .shadow(color: Color.purple.opacity(0.3), radius: 100, x: 0, y: 0)
+                        
+                        
                         VStack(alignment: .leading, spacing: 10) {
+                            
                             HStack {
                                 Image(systemName: "person.text.rectangle.fill")
                                     .foregroundColor(themeColor)
@@ -176,6 +181,16 @@ struct ActionButton: View {
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
+    }
+}
+
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
     }
 }
 
