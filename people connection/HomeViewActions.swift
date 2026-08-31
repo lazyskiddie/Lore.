@@ -22,14 +22,16 @@ struct HomeViewActions: View {
 struct stories : View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(0..<10) { _ in
-                    Circle()
-                        .font(.caption)
-                        .frame(width: 100, height: 100)
+                    HStack(spacing: 16) {
+                        // user his stories
+                        UserStoryItem()
+                        // Other users stories
+                        ForEach(1..<10) { index in
+                            StoryItem(username: "user_\(index)")
+                        }
+                    }
+                    .padding(.horizontal)
                 }
-            }
-        }
     }
 }
 
