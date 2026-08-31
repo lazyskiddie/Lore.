@@ -6,14 +6,13 @@ struct HomeViewActions: View {
             brandlogo()
             HStack {
                 Image("person.crop.circle")
-                userStories()
+//                userStories()
                 stories()
             }
             .padding(.bottom)
-            .background(.blue)
+//            .background(.blue)
             Spacer()
             VStack {
-                bodymain()
                 Spacer()
             }
         }
@@ -34,16 +33,30 @@ struct stories : View {
     }
 }
 
-struct userStories : View {
+struct UserStoryItem: View {
     var body: some View {
-        Image("person.crop.circle")
-//            .frame(width: 100, height: 100)
-    }
-}
-
-struct bodymain : View {
-    var body: some View {
-        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
+        VStack(spacing: 6) {
+            ZStack(alignment: .bottomTrailing) {
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .foregroundColor(.gray.opacity(0.5))
+                    .frame(width: 70, height: 70)
+                    .clipShape(Circle())
+                
+                // Blue Plus Badge
+                Image(systemName: "plus.circle.fill")
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .foregroundColor(.blue)
+                    .background(Circle().fill(Color.white))
+                    .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                    .offset(x: 2, y: 2)
+            }
+            
+            Text("Your story")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
     }
 }
 
