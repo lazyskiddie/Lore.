@@ -3,17 +3,22 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         TabView {
-            ZStack {
-                Color.purple
-                    .ignoresSafeArea()
-                    .opacity(0.9)
-                Text("Home View")
-                    .foregroundColor(.white)
-            }
-            .tabItem {
-                Image(systemName: "house.fill")
-                Text("Home")
-            }
+            HomeViewActions()
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("Home")
+                }
+//            ZStack {
+//                Color.purple
+//                    .ignoresSafeArea()
+//                    .opacity(0.9)
+//                HomeViewActions()
+////                    .foregroundColor(.white)
+//            }
+//            .tabItem {
+//                Image(systemName: "house.fill")
+//                Text("Home")
+//            }
             
             Text("Search View")
                 .tabItem {
