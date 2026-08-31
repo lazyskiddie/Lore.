@@ -5,12 +5,9 @@ struct HomeViewActions: View {
         VStack {
             brandlogo()
             HStack {
-                Image("person.crop.circle")
-//                userStories()
                 stories()
             }
             .padding(.bottom)
-//            .background(.blue)
             Spacer()
             VStack {
                 Spacer()
@@ -30,7 +27,7 @@ struct stories : View {
                             StoryItem(username: "user_\(index)")
                         }
                     }
-                    .padding(.horizontal)
+                    .padding()
                 }
     }
 }
@@ -58,6 +55,36 @@ struct UserStoryItem: View {
             Text("Your story")
                 .font(.caption)
                 .foregroundColor(.secondary)
+        }
+    }
+}
+
+struct StoryItem: View {
+    var username: String
+    
+    let instaGradient = LinearGradient(
+        colors: [.yellow, .orange, .red, .purple],
+        startPoint: .bottomLeading,
+        endPoint: .topTrailing
+    )
+    
+    var body: some View {
+        VStack(spacing: 6) {
+            Image(systemName: "person.circle.fill")
+                .resizable()
+                .foregroundColor(.gray.opacity(0.8))
+                .frame(width: 64, height: 64)
+                .clipShape(Circle())
+                // Creates the gap between the image and the ring
+                .padding(3)
+                .background(
+                    Circle()
+                        .stroke(instaGradient, lineWidth: 3)
+                )
+            
+            Text(username)
+                .font(.caption)
+                .foregroundColor(.primary)
         }
     }
 }
