@@ -18,17 +18,17 @@ struct HomeViewActions: View {
 
 struct stories : View {
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 16) {
-                        // user his stories
-                        UserStoryItem()
-                        // Other users stories
-                        ForEach(1..<10) { index in
-                            StoryItem(username: "user_\(index)")
-                        }
-                    }
-                    .padding()
+        ScrollView(.horizontal, showsIndicators: false){
+            HStack(spacing: 16) {
+                // user his story
+                UserStoryItem()
+                // others user story
+                ForEach(1..<10) { index in
+                    StoryItem(username: "user_\(index)")
                 }
+            }
+            .padding()
+        }
     }
 }
 
@@ -95,26 +95,28 @@ struct brandlogo : View {
             HStack {
                 Image(systemName: "line.horizontal.3")
                     .padding(8)
-                    .background(.black.opacity(0.001))
+                    .background(.white.opacity(0.001))
                     .onTapGesture {
                         
                     }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            Text("Bumble")
-                .font(.title)
+            Text("Lore.")
+                .font(.system(size: 28, weight: .medium, design: .rounded))
                 .frame(maxWidth: .infinity, alignment: .center)
             
             Image(systemName: "slider.horizontal.3")
                 .padding(8)
-                .background(.black.opacity(0.001))
+                .background(.white.opacity(0.001))
                 .onTapGesture {
                     
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .font(.title2)
-        .fontWeight(.medium)
+        .foregroundColor(Color(red: 0.96, green: 0.94, blue: 0.90))
+        .padding()
+        .background(Color(red: 0.15, green: 0.05, blue: 0.20))
     }
 }
 #Preview {
