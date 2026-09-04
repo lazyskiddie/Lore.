@@ -2,15 +2,25 @@ import SwiftUI
 
 struct HomeViewActions: View {
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             brandlogo()
-            HStack {
-                stories()
-            }
-            .padding(.bottom)
-            Spacer()
-            VStack {
-                Spacer()
+            
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    HStack {
+                        stories()
+                    }
+                    .padding(.bottom)
+                    Spacer()
+                    VStack {
+                        ProfileView()
+                        ProfileView()
+                        ProfileView()
+                        ProfileView()
+                        ProfileView()
+                        Spacer()
+                    }
+                }
             }
         }
     }
@@ -115,7 +125,7 @@ struct brandlogo : View {
         }
         .font(.title2)
         .foregroundColor(Color(red: 0.96, green: 0.94, blue: 0.90))
-        .padding()
+        .padding(.bottom, 16)
         .background(Color(red: 0.15, green: 0.05, blue: 0.20))
     }
 }
