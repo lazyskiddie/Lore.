@@ -63,7 +63,7 @@ struct StoryItem: View {
     var username: String
     
     let instaGradient = LinearGradient(
-        colors: [.yellow, .orange, .red, .purple],
+        colors: [.purple],
         startPoint: .bottomLeading,
         endPoint: .topTrailing
     )
