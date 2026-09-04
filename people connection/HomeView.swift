@@ -8,17 +8,6 @@ struct HomeView: View {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }
-//            ZStack {
-//                Color.purple
-//                    .ignoresSafeArea()
-//                    .opacity(0.9)
-//                HomeViewActions()
-////                    .foregroundColor(.white)
-//            }
-//            .tabItem {
-//                Image(systemName: "house.fill")
-//                Text("Home")
-//            }
             
             Text("Search View")
                 .tabItem {
@@ -26,16 +15,15 @@ struct HomeView: View {
                     Text("Explore")
                 }
             
-            Text("Notifications View")
-                .tabItem {
-                    Image(systemName: "bell.fill")
-                    Text("Alerts")
-                }
-            
             Text("Profile View")
                 .tabItem {
                     Image(systemName: "message.fill")
                     Text("Chat")
+                }
+            Text("Notifications View")
+                .tabItem {
+                    Image(systemName: "bell.fill")
+                    Text("Alerts")
                 }
             
             ProfileView()
