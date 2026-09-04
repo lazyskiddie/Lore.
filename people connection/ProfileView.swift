@@ -3,7 +3,6 @@ import SwiftUI
 struct ProfileView: View {
     let name = "Sandeep Singh"
     let age = 22
-    let username = "@Sand0208A"
     let location = "Surat, Gujarat"
     let bio = "Software engineer by day, exploring hiking trails by weekend. Love a good cup of coffee and meaningful conversations. Looking for someone to share new experiences with."
     let interests = ["Travel", "Hiking", "Coding", "Coffee", "Live Music", "Fitness"]
@@ -21,7 +20,9 @@ struct ProfileView: View {
                         Image("sandeep")
                             .resizable()
                             .scaledToFill()
-                            .frame(width: UIScreen.main.bounds.width, height: 450)
+                        
+                            .frame(width: UIScreen.main.bounds.width, height: 400)
+//                            .frame(width: 400, height: 400)
                             .clipped()
                             .cornerRadius(25, corners: [.bottomLeft, .bottomRight])
                         
@@ -34,43 +35,7 @@ struct ProfileView: View {
                     }
                     
                     VStack(spacing: 16) {
-                        VStack(alignment: .leading, spacing: 4) {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    HStack(alignment: .firstTextBaseline) {
-//                                        Image(systemName: "person.crop.circle.badge.checkmark.fill")
-                                        Image(systemName: "person.crop.circle.fill")
-                                            .foregroundColor(themeColor)
-                                        Text("\(username)")
-                                            .font(.system(size: 16, weight: .bold))
-                                            .foregroundColor(.black)
-                                            .bold()
-                                        
-                                        Image(systemName: "checkmark.seal.fill")
-                                            .foregroundColor(.blue)
-                                            .font(.headline)
-                                    }
-                                    Text("\(age)")
-                                        .font(.system(.body, design: .monospaced))
-                                        .foregroundColor(.black)
-                                        .bold()
-                                    
-                                    HStack {
-                                        Image(systemName: "location.fill")
-                                        Text(location)
-                                    }
-                                    .font(.subheadline)
-                                    .foregroundColor(.black.opacity(0.9))
-                                }
-                        }
-                        .padding()
-                        .frame(width: 300, height: 100)
-                        .background(Color(UIColor.secondarySystemGroupedBackground))
-                        .cornerRadius(15)
-                        .shadow(color: Color.purple.opacity(0.3), radius: 100, x: 0, y: 0)
-                        
-                        
                         VStack(alignment: .leading, spacing: 10) {
-                            
                             HStack {
                                 Image(systemName: "person.text.rectangle.fill")
                                     .foregroundColor(themeColor)
@@ -79,10 +44,20 @@ struct ProfileView: View {
                                     .font(.title)
                                     .foregroundColor(.primary)
                             }
-                            Text("\(name)")
-                                .font(.system(size: 36, weight: .bold))
-                                .foregroundColor(.primary)
-                            
+                            HStack {
+                                Text("\(name)")
+                                    .font(.system(size: 25, weight: .bold))
+                                    .foregroundColor(.primary)
+                                
+                                Image(systemName: "checkmark.seal.fill")
+                                    .foregroundColor(.blue)
+                            }
+                            HStack {
+                                Text("\(age),")
+                                    .bold()
+                                Image(systemName: "location.fill")
+                                Text(location)
+                            }
                             Text(bio)
                                 .font(.body)
                                 .foregroundColor(.secondary)
@@ -164,9 +139,9 @@ struct ActionButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: icon)
-                .font(.system(size: small ? 24 : 30, weight: .bold))
+                .font(.system(size: small ? 20 : 26, weight: .bold))
                 .foregroundColor(color)
-                .frame(width: small ? 60 : 75, height: small ? 60 : 75)
+                .frame(width: small ? 45 : 60, height: small ? 45 : 60)
                 .background(Color(UIColor.secondarySystemGroupedBackground))
                 .clipShape(Circle())
 //                .overlay(
