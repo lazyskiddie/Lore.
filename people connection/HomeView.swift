@@ -15,7 +15,7 @@ struct HomeView: View {
                     Text("Explore")
                 }
             
-            Text("Profile View")
+            ChatViews()
                 .tabItem {
                     Image(systemName: "message.fill")
                     Text("Chat")
