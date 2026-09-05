@@ -103,7 +103,10 @@ struct brandlogo : View {
     var body: some View {
         HStack {
             HStack {
-                Image(systemName: "line.horizontal.3")
+                Image("sandeep")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
                     .padding(8)
                     .background(.white.opacity(0.001))
                     .onTapGesture {
@@ -114,14 +117,22 @@ struct brandlogo : View {
             Text("Lore.")
                 .font(.system(size: 28, weight: .medium, design: .rounded))
                 .frame(maxWidth: .infinity, alignment: .center)
-            
-            Image(systemName: "slider.horizontal.3")
-                .padding(8)
-                .background(.white.opacity(0.001))
-                .onTapGesture {
-                    
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
+            HStack {
+                Image(systemName: "line.horizontal.3")
+                    .padding(8)
+                    .background(.white.opacity(0.001))
+                    .onTapGesture {
+                        
+                    }
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+//            Image(systemName: "slider.horizontal.3")
+//                .padding(8)
+//                .background(.white.opacity(0.001))
+//                .onTapGesture {
+//                    
+//                }
+//                .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .font(.title2)
         .foregroundColor(Color(red: 0.96, green: 0.94, blue: 0.90))
