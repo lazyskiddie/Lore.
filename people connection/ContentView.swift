@@ -38,7 +38,7 @@ struct WelcomeView: View {
     
     var body: some View {
         ZStack {
-            Color.purple
+            Color(red: 0.15, green: 0.05, blue: 0.20)
                 .ignoresSafeArea()
             
             VStack {
@@ -57,7 +57,7 @@ struct WelcomeView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 200)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color(red: 0.95, green: 0.91, blue: 1.00))
                     .padding()
                 
                 Spacer()
@@ -107,7 +107,7 @@ struct NameInputView: View {
     
     var body: some View {
         ZStack {
-            Color.purple.ignoresSafeArea()
+            Color(red: 0.15, green: 0.05, blue: 0.20).ignoresSafeArea()
             
             VStack(spacing: 30) {
                 Spacer()
@@ -142,7 +142,7 @@ struct AgeInputView: View {
     
     var body: some View {
         ZStack {
-            Color.purple.ignoresSafeArea()
+            Color(red: 0.15, green: 0.05, blue: 0.20).ignoresSafeArea()
             
             VStack(spacing: 30) {
                 Spacer()
@@ -178,7 +178,7 @@ struct GenderInputView: View {
     
     var body: some View {
         ZStack {
-            Color.purple.ignoresSafeArea()
+            Color(red: 0.15, green: 0.05, blue: 0.20).ignoresSafeArea()
             
             VStack(spacing: 30) {
                 Spacer()
@@ -220,7 +220,7 @@ struct MatchReadyView: View {
     
     var body: some View {
         ZStack {
-            Color.purple
+            Color(red: 0.15, green: 0.05, blue: 0.20)
                 .ignoresSafeArea(.all)
             
             VStack {
@@ -229,21 +229,21 @@ struct MatchReadyView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color(red: 0.95, green: 0.91, blue: 1.00))
                         .padding(.top, 15)
                     
                     Image(systemName: "heart.circle")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 200)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color(red: 1.00, green: 0.30, blue: 0.65))
                         .padding(.bottom, 50)
                 
                     Image(systemName: "person.fill")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color(red: 0.95, green: 0.91, blue: 1.00))
                         .padding(.top, 15)
                     
                 }
