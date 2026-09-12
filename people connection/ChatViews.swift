@@ -6,7 +6,7 @@ struct ChatViews: View {
             brandlogo()
             header()
             ScrollView {
-                
+                chatInterface()
             }
         }
     }
@@ -20,6 +20,26 @@ struct header : View {
             .bold()
             .padding()
             .background(.purple)
+    }
+}
+
+struct chatInterface : View {
+    var body: some View {
+        HStack {
+            chatImage()
+            Spacer()
+        }
+    }
+}
+
+struct chatImage : View {
+    var body: some View {
+        Image("sandeep")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 40, height: 40)
+            .padding(8)
+            .background(.white.opacity(0.001))
     }
 }
 
