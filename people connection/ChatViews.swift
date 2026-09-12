@@ -29,6 +29,10 @@ struct chatInterface : View {
                 chatImage()
                 VStack(alignment: .leading) {
                     chatName()
+                    HStack {
+                        Spacer()
+                        UserStatus(isOnline: true)
+                    }
                 }
                 
                 Spacer()
@@ -58,6 +62,22 @@ struct chatName : View {
     }
 }
 
+struct UserStatus : View {
+    let isOnline: Bool
+        
+        var body: some View {
+            HStack(spacing: 6) {
+                
+                Text(isOnline ? "Online" : "Offline")
+                    .font(.subheadline)
+                    .bold()
+                    .foregroundColor(.white)
+                    .frame(width: 60, height: 20)
+                    .background(isOnline ? Color.purple : Color.red).cornerRadius(20)
+                
+            }
+        }
+}
 
 #Preview {
     ChatViews()
