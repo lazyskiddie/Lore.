@@ -24,38 +24,42 @@ struct header : View {
 }
 
 struct chatInterface : View {
-    var body: some View {
-        HStack {
-            chatImage()
-//            Spacer()
-            HStack {
-                VStack {
+        var body: some View {
+            HStack(spacing: 12) {
+                chatImage()
+                VStack(alignment: .leading) {
                     chatName()
                 }
+                
+                Spacer()
             }
-            Spacer()
-            
+            .padding(.horizontal)
         }
-    }
 }
 
 struct chatImage : View {
+    let imageName: String = "sandeep"
     var body: some View {
-        Image("sandeep")
+        Image(imageName)
             .resizable()
             .scaledToFit()
             .frame(width: 40, height: 40)
             .padding(8)
+            .clipShape(Circle())
             .background(.white.opacity(0.001))
     }
 }
 
 struct chatName : View {
-    var name = "Sandeep"
+    let name = "Sandeep"
     var body: some View {
         Text("\(name)")
+            .font(.headline)
     }
 }
+
+
 #Preview {
     ChatViews()
 }
+
