@@ -27,7 +27,14 @@ struct chatInterface : View {
     var body: some View {
         HStack {
             chatImage()
+//            Spacer()
+            HStack {
+                VStack {
+                    chatName()
+                }
+            }
             Spacer()
+            
         }
     }
 }
@@ -43,6 +50,12 @@ struct chatImage : View {
     }
 }
 
+struct chatName : View {
+    var name = "Sandeep"
+    var body: some View {
+        Text("\(name)")
+    }
+}
 #Preview {
     ChatViews()
 }
