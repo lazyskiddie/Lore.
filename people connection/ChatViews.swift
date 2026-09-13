@@ -7,7 +7,12 @@ struct ChatViews: View {
             header()
             ScrollView {
                 chatInterface()
+                    
+                    .onTapGesture {
+                        
+                    }
             }
+            .padding(.horizontal)
         }
     }
 }
@@ -27,17 +32,25 @@ struct chatInterface : View {
         var body: some View {
             HStack(spacing: 12) {
                 chatImage()
-                VStack(alignment: .leading) {
-                    chatName()
-                    HStack {
+                VStack {
+                    HStack() {
+                        chatName()
                         Spacer()
                         UserStatus(isOnline: true)
                     }
+                    .padding(.top, 10)
+                    Spacer()
                 }
                 
                 Spacer()
             }
-            .padding(.horizontal)
+            
+            .frame(width: 400, height: 60)
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray, lineWidth: 1)
+            )
         }
 }
 
@@ -47,9 +60,9 @@ struct chatImage : View {
         Image(imageName)
             .resizable()
             .scaledToFit()
+            .clipShape(Circle())
             .frame(width: 40, height: 40)
             .padding(8)
-            .clipShape(Circle())
             .background(.white.opacity(0.001))
     }
 }
