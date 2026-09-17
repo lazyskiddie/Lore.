@@ -6,6 +6,14 @@ struct ChatViews: View {
             brandlogo()
             header()
             ScrollView {
+                // these are just for temprory test purpose
+                chatInterface()
+                chatInterface()
+                chatInterface()
+                chatInterface()
+                chatInterface()
+                chatInterface()
+                chatInterface()
                 chatInterface()
                     
                     .onTapGesture {
@@ -24,7 +32,7 @@ struct header : View {
             .font(.largeTitle)
             .bold()
             .padding()
-            .background(.purple)
+//            .background(.purple)
     }
 }
 
