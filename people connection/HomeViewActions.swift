@@ -106,8 +106,8 @@ struct brandlogo : View {
                 Image("sandeep")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 40, height: 40)
-                    .padding(8)
+                    .frame(width: 35, height: 35)
+                    .padding(.leading, 8)
                     .background(.white.opacity(0.001))
                     .onTapGesture {
                         
@@ -115,8 +115,9 @@ struct brandlogo : View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             Text("Lore.")
-                .font(.system(size: 28, weight: .medium, design: .rounded))
+                .font(.system(size: 25, weight: .medium, design: .rounded))
                 .frame(maxWidth: .infinity, alignment: .center)
+                .padding(8)
             HStack {
                 Image(systemName: "line.horizontal.3")
                     .padding(8)
@@ -136,7 +137,7 @@ struct brandlogo : View {
         }
         .font(.title2)
         .foregroundColor(Color(red: 0.96, green: 0.94, blue: 0.90))
-        .padding(.bottom, 16)
+//        .padding(.bottom, 5)
         .background(Color(red: 0.15, green: 0.05, blue: 0.20))
     }
 }
