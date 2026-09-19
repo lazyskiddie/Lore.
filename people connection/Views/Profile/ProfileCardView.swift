@@ -1,18 +1,28 @@
-//
-//  ProfileCardView.swift
-//  people connection
-//
-//  Created by singh sandeepkumar vinodkumar on 19/09/26.
-//
-
 import SwiftUI
 
 struct ProfileCardView: View {
+    let user: User
+    var onPass: () -> Void = {}
+    var onSuperLike: () -> Void = {}
+    var onLike: () -> Void = {}
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            ProfileDetailContent(user: user)
+
+            VStack {
+                Spacer()
+                HStack(spacing: 20) {
+                    ActionButton(icon: "xmark", color: .gray, action: onPass)
+                    ActionButton(icon: "star.fill", color: .blue, small: true, action: onSuperLike)
+                    ActionButton(icon: "heart.fill", color: .purple, action: onLike)
+                }
+                .padding(.bottom, 20)
+            }
+        }
     }
 }
 
 #Preview {
-    ProfileCardView()
+    ProfileCardView(user: SampleData.priya)
 }
