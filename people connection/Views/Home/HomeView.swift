@@ -1,32 +1,35 @@
 import SwiftUI
 
 struct HomeView: View {
+    let dependencies: AppDependencies
+
     var body: some View {
         TabView {
-            HomeViewActions()
+            HomeFeedView(dependencies: dependencies)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }
-            
-            Text("Search View")
+
+            Text("Explore coming soon")
                 .tabItem {
                     Image(systemName: "safari")
                     Text("Explore")
                 }
-            
-            ChatViews()
+
+            ChatListView(dependencies: dependencies)
                 .tabItem {
                     Image(systemName: "message.fill")
                     Text("Chat")
                 }
-            Text("Notifications View")
+
+            Text("Alerts coming soon")
                 .tabItem {
                     Image(systemName: "bell.fill")
                     Text("Alerts")
                 }
-            
-            ProfileView()
+
+            ProfileView(dependencies: dependencies)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profile")
@@ -37,5 +40,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(dependencies: .preview())
 }
