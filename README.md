@@ -27,36 +27,6 @@ The repository description identifies the project as a dating app in progress, a
 - Data modeling: Foundation, Codable, domain and DTO structs
 - Architecture: MVVM-inspired structure with separate models, view models, and views
 
-## Project structure
-
-```text
-Lore/
-├── README.md
-├── people connection/
-│   ├── App/
-│   ├── Assets.xcassets/
-│   ├── ContentView.swift
-│   ├── ChatViews.swift
-│   ├── HomeViewActions.swift
-│   ├── Core/
-│   │   ├── DI/
-│   │   └── Persistence/
-│   ├── Models/
-│   │   ├── DTO/
-│   │   └── Domain/
-│   ├── Repositories/
-│   ├── ViewModels/
-│   └── Views/
-│       ├── Chat/
-│       ├── Home/
-│       ├── Onboarding/
-│       ├── Profile/
-│       └── Shared/
-├── people connection.xcodeproj/
-├── people connectionTests/
-└── people connectionUITests/
-```
-
 ## Key application concepts
 
 ### Onboarding
@@ -149,9 +119,6 @@ Contributions are welcome. A typical contribution flow would be:
 4. Run the relevant Xcode tests or UI checks
 5. Open a pull request for review
 
-## License
-
-No explicit license file is currently present in the repository metadata, so the project does not currently declare a license. If you intend to share or distribute the app publicly, adding an appropriate license is recommended.
 
 ## Summary
 
