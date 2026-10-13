@@ -1,6 +1,6 @@
 import Foundation
 
-/// Mirrors `toUserDTO()` in the backend's  field-for-field.
+/// Mirrors `toUserDTO()` in the backend's `users.service.ts` field-for-field.
 /// Never used directly by views — always mapped to `User` first.
 struct UserDTO: Decodable {
     let id: String
