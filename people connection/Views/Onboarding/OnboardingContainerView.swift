@@ -21,7 +21,7 @@ struct OnboardingContainerView: View {
                 .tag(0)
             NameInputView(viewModel: viewModel, nextAction: goNext)
                 .tag(1)
-            AgeInputView(viewModel: viewModel, nextAction: goNext)
+            BirthdateInputView(viewModel: viewModel, nextAction: goNext)
                 .tag(2)
             GenderInputView(viewModel: viewModel, nextAction: goNext)
                 .tag(3)
