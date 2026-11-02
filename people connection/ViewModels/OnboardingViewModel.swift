@@ -5,7 +5,7 @@ import Observation
 @MainActor
 final class OnboardingViewModel {
     var name: String = ""
-    var age: String = ""
+    var birthdate: Date = OnboardingViewModel.defaultBirthdate
     var gender: Gender?
     var email: String = ""
     var password: String = ""
@@ -21,21 +21,47 @@ final class OnboardingViewModel {
         self.sessionStore = sessionStore
     }
 
+    /// Where the date picker starts (it still has to be moved to the person's real birthday).
+    static var defaultBirthdate: Date {
+        Calendar.current.date(byAdding: .year, value: -25, to: .now) ?? .now
+    }
+
+    /// The newest birthday that still makes someone 18 today.
+    static var latestAllowedBirthdate: Date {
+        Calendar.current.date(byAdding: .year, value: -18, to: .now) ?? .now
+    }
+
+    var ageInYears: Int {
+        Calendar.current.dateComponents([.year], from: birthdate, to: .now).year ?? 0
+    }
+
     var isNameValid: Bool {
         !name.trimmingCharacters(in: .whitespaces).isEmpty
     }
 
-    var isAgeValid: Bool {
-        guard let value = Int(age) else { return false }
-        return value >= 18 && value <= 120
+    var isBirthdateValid: Bool {
+        (18...120).contains(ageInYears)
     }
 
     var isCredentialsValid: Bool {
         email.contains("@") && email.contains(".") && password.count >= 8
     }
 
+    /// "yyyy-MM-dd" in the person's own calendar — exactly what the backend expects.
+    var birthdateString: String {
+        Self.birthdateFormatter.string(from: birthdate)
+    }
+
+    private static let birthdateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+
     func completeSignUp() async {
-        guard let gender, let ageValue = Int(age) else { return }
+        guard let gender, isBirthdateValid else { return }
 
         isSubmitting = true
         errorMessage = nil
@@ -46,21 +72,12 @@ final class OnboardingViewModel {
                 email: email.trimmingCharacters(in: .whitespaces).lowercased(),
                 password: password,
                 name: name.trimmingCharacters(in: .whitespaces),
-                birthdate: Self.birthdateString(forAge: ageValue),
+                birthdate: birthdateString,
                 gender: gender
             )
             sessionStore.didAuthenticate(as: user)
         } catch {
             errorMessage = (error as? APIError)?.errorDescription ?? "Something went wrong. Please try again."
         }
-    }
-
-    /// The backend stores a birthdate, but this simplified onboarding only
-    /// collects an age, so we synthesize a birthdate (Jan 1 of the
-    /// appropriate year) that satisfies the same "at least 18" validation
-    /// server-side.
-    private static func birthdateString(forAge age: Int) -> String {
-        let year = Calendar.current.component(.year, from: .now) - age
-        return String(format: "%04d-01-01", year)
     }
 }
