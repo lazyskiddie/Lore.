@@ -38,25 +38,18 @@ struct HomeFeedView: View {
                 Task { await viewModel.loadFeed() }
             }
         } else if let topProfile = viewModel.profiles.first {
-            // Only the top card's own ScrollView scrolls vertically — the
-            // stories strip above it scrolls horizontally, so the two never
-            // fight over the same vertical-drag gesture.
-            VStack(spacing: 0) {
-                StoriesRowView(currentUserPhotoURL: nil, otherUsers: Array(viewModel.profiles.dropFirst()))
-
-                ProfileCardView(
-                    user: topProfile,
-                    onPass: { Task { await viewModel.swipe(topProfile, action: .pass) } },
-                    onSuperLike: { Task { await viewModel.swipe(topProfile, action: .superLike) } },
-                    onLike: { Task { await viewModel.swipe(topProfile, action: .like) } }
-                )
-                .id(topProfile.id)
-            }
+            ProfileCardView(
+                user: topProfile,
+                onPass: { Task { await viewModel.swipe(topProfile, action: .pass) } },
+                onSuperLike: { Task { await viewModel.swipe(topProfile, action: .superLike) } },
+                onLike: { Task { await viewModel.swipe(topProfile, action: .like) } }
+            )
+            .id(topProfile.id)
         } else {
             EmptyStateView(
                 systemImage: "person.crop.circle.badge.questionmark",
-                title: "You're all caught up",
-                message: "No new profiles right now — check back soon."
+                title: "No one new right now",
+                message: "You've seen everyone for now. As more people join, they'll show up here — or use Search to find someone by name."
             )
         }
     }
