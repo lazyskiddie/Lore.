@@ -4,6 +4,8 @@ protocol UserRepositoryProtocol: Sendable {
     func fetchMe() async throws -> User
     func fetchUser(id: String) async throws -> User
     func updateMe(name: String?, bio: String?, location: String?, interests: [String]?) async throws -> User
+    /// Finds other people by name or city. Never includes the caller.
+    func searchUsers(query: String, limit: Int, page: Int) async throws -> [User]
 }
 
 final class UserRepository: UserRepositoryProtocol, @unchecked Sendable {
@@ -21,6 +23,19 @@ final class UserRepository: UserRepositoryProtocol, @unchecked Sendable {
     func fetchUser(id: String) async throws -> User {
         let dto: UserDTO = try await apiClient.send(Endpoint(path: "users/\(id)"))
         return dto.toDomain()
+    }
+
+    func searchUsers(query: String, limit: Int = 20, page: Int = 0) async throws -> [User] {
+        let endpoint = Endpoint(
+            path: "users/search",
+            queryItems: [
+                URLQueryItem(name: "q", value: query),
+                URLQueryItem(name: "limit", value: String(limit)),
+                URLQueryItem(name: "page", value: String(page)),
+            ]
+        )
+        let response: UserSearchResponseDTO = try await apiClient.send(endpoint)
+        return response.users.map { $0.toDomain() }
     }
 
     func updateMe(name: String?, bio: String?, location: String?, interests: [String]?) async throws -> User {

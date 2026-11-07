@@ -52,6 +52,9 @@ final class MockUserRepository: UserRepositoryProtocol, @unchecked Sendable {
     func updateMe(name: String?, bio: String?, location: String?, interests: [String]?) async throws -> User {
         SampleData.currentUser
     }
+    func searchUsers(query: String, limit: Int, page: Int) async throws -> [User] {
+        SampleData.feed.filter { $0.name.localizedCaseInsensitiveContains(query) }
+    }
 }
 
 final class MockDiscoveryRepository: DiscoveryRepositoryProtocol, @unchecked Sendable {

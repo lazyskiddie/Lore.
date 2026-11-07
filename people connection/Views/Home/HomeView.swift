@@ -11,10 +11,10 @@ struct HomeView: View {
                     Text("Home")
                 }
 
-            Text("Explore coming soon")
+            SearchView(dependencies: dependencies)
                 .tabItem {
-                    Image(systemName: "safari")
-                    Text("Explore")
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
                 }
 
             ChatListView(dependencies: dependencies)
@@ -23,10 +23,10 @@ struct HomeView: View {
                     Text("Chat")
                 }
 
-            Text("Alerts coming soon")
+            MatchesView(dependencies: dependencies)
                 .tabItem {
-                    Image(systemName: "bell.fill")
-                    Text("Alerts")
+                    Image(systemName: "heart.fill")
+                    Text("Matches")
                 }
 
             ProfileView(dependencies: dependencies)
