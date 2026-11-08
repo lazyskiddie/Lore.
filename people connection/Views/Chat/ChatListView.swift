@@ -25,7 +25,7 @@ struct ChatListView: View {
             .navigationBarHidden(true)
         }
         .task {
-            await viewModel.loadIfNeeded()
+            await viewModel.load()
         }
     }
 
