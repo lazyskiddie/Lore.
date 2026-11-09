@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @State private var viewModel: ProfileViewModel
+    @State private var isEditing = false
     private let onSignOut: () async -> Void
 
     init(dependencies: AppDependencies) {
@@ -50,6 +51,27 @@ struct ProfileView: View {
         }
         .refreshable {
             await viewModel.load()
+        }
+        .overlay(alignment: .topTrailing) {
+            if viewModel.user != nil {
+                Button {
+                    viewModel.saveError = nil
+                    isEditing = true
+                } label: {
+                    Image(systemName: "pencil")
+                        .font(.headline)
+                        .padding(12)
+                        .background(.ultraThinMaterial, in: Circle())
+                }
+                .padding(.trailing, 16)
+                .padding(.top, 8)
+                .accessibilityLabel("Edit profile")
+            }
+        }
+        .sheet(isPresented: $isEditing) {
+            if let user = viewModel.user {
+                EditProfileView(user: user, viewModel: viewModel)
+            }
         }
     }
 }
